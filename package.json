@@ -1,6 +1,6 @@
 {
   "name": "lit-i18n-tool",
-  "displayName": "lit-i18n-tool",
+  "displayName": "@easyfe/lit-i18n-tool",
   "description": "让你的多语言项目项目开发更轻松",
   "version": "0.0.3",
   "engines": {
@@ -9,15 +9,7 @@
   "categories": [
     "Other"
   ],
-  "publisher": "wusong",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/WUSO01/lit-i18n-tool"
-  },
-  "author": {
-    "name": "WUSO01",
-    "url": "https://github.com/WUSO01"
-  },
+  "publisher": "han3sui",
   "activationEvents": [
     "onLanguage:typescript",
     "onLanguage:javascript",
@@ -168,6 +160,7 @@
     }
   },
   "scripts": {
+    "package": "pnpm vsce package --no-dependencies",
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "lint": "eslint src --ext ts",
@@ -185,6 +178,7 @@
     "@types/vscode": "^1.47.0",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
+    "@vscode/vsce": "^2.23.0",
     "eslint": "^6.8.0",
     "glob": "^7.1.6",
     "mocha": "^7.1.2",
