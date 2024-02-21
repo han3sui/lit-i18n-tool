@@ -10,6 +10,14 @@
     "Other"
   ],
   "publisher": "han3sui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WUSO01/lit-i18n-tool"
+  },
+  "author": {
+    "name": "WUSO01",
+    "url": "https://github.com/WUSO01"
+  },
   "activationEvents": [
     "onLanguage:typescript",
     "onLanguage:javascript",
