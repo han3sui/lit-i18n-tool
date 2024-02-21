@@ -78,7 +78,6 @@ export function activate(context: vscode.ExtensionContext) {
     const selectedText = activeEditor.document.getText(selection);
     //获取目录下所有json文件，并且增加当前的key，如果有重复的key则不增加
     const filename = `${workspace.rootPath}/${getConfiguration("localesPaths")}`;
-    let isError = false;
     if (fs.existsSync(filename)) {
       const files = fs.readdirSync(filename);
       files.forEach((file) => {
@@ -86,8 +85,7 @@ export function activate(context: vscode.ExtensionContext) {
         if (filePath.endsWith(".json")) {
           const obj = fs.readJSONSync(filePath);
           if (_.get(obj, selectedText) !== undefined) {
-            isError = true;
-            vscode.window.showErrorMessage(`key: ${selectedText}重复，请重新命名`);
+            vscode.window.showErrorMessage(`key: ${selectedText}重复`);
             return;
           }
           //如果key被双引号或者单引号包裹，则去掉引号
@@ -96,9 +94,6 @@ export function activate(context: vscode.ExtensionContext) {
           fs.writeFileSync(filePath, JSON.stringify(obj, null, 4));
         }
       });
-    }
-    if (isError) {
-      return;
     }
     //替换当前选中的文本
     await replaceSelectedContent(selectedText, getConfiguration(type));
