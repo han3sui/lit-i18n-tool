@@ -87,10 +87,12 @@ export function activate(context: vscode.ExtensionContext) {
           const obj = fs.readJSONSync(filePath);
           if (_.get(obj, selectedText) !== undefined) {
             isError = true;
-            vscode.window.showErrorMessage(`key: \`${selectedText}\`重复，请重新命名`);
+            vscode.window.showErrorMessage(`key: ${selectedText}重复，请重新命名`);
             return;
           }
-          _.set(obj, selectedText, selectedText);
+          //如果key被双引号或者单引号包裹，则去掉引号
+          const newKey = selectedText.replace(/^['"]|['"]$/g, "");
+          _.set(obj, newKey, newKey);
           fs.writeFileSync(filePath, JSON.stringify(obj, null, 4));
         }
       });
