@@ -92,8 +92,22 @@
         "title": "lit-i18n-tool: 检查key"
       },
       {
-        "command": "lit-i18n-tool.wrappdKey",
-        "title": "lit-i18n-tool：包裹当前文案"
+        "command": "lit-i18n-tool.wrappdKey1",
+        "title": "lit-i18n-tool: 方案1"
+      },
+      {
+        "command": "lit-i18n-tool.wrappdKey2",
+        "title": "lit-i18n-tool: 方案2"
+      },
+      {
+        "command": "lit-i18n-tool.wrappdKey3",
+        "title": "lit-i18n-tool: 方案3"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "lit-i18n-tool.wrappdKey/content",
+        "label": "lit-i18n-tool：包裹当前文案"
       }
     ],
     "keybindings": [
@@ -104,9 +118,18 @@
         "when": "editorHasSelection"
       },
       {
-        "command": "lit-i18n-tool.wrappdKey",
-        "key": "shift+cmd+i",
-        "mac": "shift+cmd+i",
+        "command": "lit-i18n-tool.wrappdKey1",
+        "key": "alt+1",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "lit-i18n-tool.wrappdKey2",
+        "key": "alt+2",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "lit-i18n-tool.wrappdKey3",
+        "key": "alt+3",
         "when": "editorHasSelection"
       }
     ],
@@ -124,7 +147,21 @@
         },
         {
           "when": "editorHasSelection && resourceFilename =~ /.ts|.js|.html|.vue/",
-          "command": "lit-i18n-tool.wrappdKey",
+          "submenu": "lit-i18n-tool.wrappdKey/content",
+          "group": "1_i18n"
+        }
+      ],
+      "lit-i18n-tool.wrappdKey/content": [
+        {
+          "command": "lit-i18n-tool.wrappdKey1",
+          "group": "1_i18n"
+        },
+        {
+          "command": "lit-i18n-tool.wrappdKey2",
+          "group": "1_i18n"
+        },
+        {
+          "command": "lit-i18n-tool.wrappdKey3",
           "group": "1_i18n"
         }
       ]
@@ -139,6 +176,7 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
+    "@easyfe/eslint-config-ts": "^0.0.3",
     "@types/fs-extra": "^9.0.1",
     "@types/glob": "^7.1.1",
     "@types/lodash": "^4.14.161",
