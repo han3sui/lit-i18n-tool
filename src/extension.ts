@@ -7,7 +7,7 @@ import * as vscode from "vscode";
 import * as _ from "lodash";
 import * as fs from "fs-extra";
 import { replaceSelectedContent } from "./replaceSelectedContent";
-import { generateJson, analysisJson, getConfiguration, showOutput } from "./utils";
+import { generateJson, analysisJson, getConfiguration, showOutput,removeQuotationMarks } from "./utils";
 import { searchKey } from "./search";
 
 const { window, workspace } = vscode;
@@ -69,7 +69,7 @@ export function activate(context: vscode.ExtensionContext) {
       window.showInformationMessage(`成功替换当前文本`);
     })
   );
-  async function doWrape(type: "replace1" | "replace2" | "replace3") {
+  async function doWrape(type: "replace1" | "replace2" | "replace3"| "replace4") {
     const activeEditor = window.activeTextEditor;
     if (!activeEditor) {
       return;
@@ -84,12 +84,12 @@ export function activate(context: vscode.ExtensionContext) {
         const filePath = `${filename}/${file}`;
         if (filePath.endsWith(".json")) {
           const obj = fs.readJSONSync(filePath);
-          if (_.get(obj, selectedText) !== undefined) {
+          if (_.get(obj, removeQuotationMarks(selectedText)) !== undefined) {
             vscode.window.showErrorMessage(`key: ${selectedText}重复`);
             return;
           }
           //如果key被双引号或者单引号包裹，则去掉引号
-          const newKey = selectedText.replace(/^['"]|['"]$/g, "");
+          const newKey = removeQuotationMarks(selectedText);
           _.set(obj, newKey, newKey);
           fs.writeFileSync(filePath, JSON.stringify(obj, null, 4));
         }
@@ -110,6 +110,11 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerTextEditorCommand("lit-i18n-tool.wrappdKey3", async () => {
       doWrape("replace3");
+    })
+  );
+    context.subscriptions.push(
+    vscode.commands.registerTextEditorCommand("lit-i18n-tool.wrappdKey4", async () => {
+      doWrape("replace4");
     })
   );
   context.subscriptions.push(

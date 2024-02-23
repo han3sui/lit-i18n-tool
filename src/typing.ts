@@ -15,6 +15,7 @@ export interface Config {
   replace1: string;
   replace2: string;
   replace3: string;
+  replace4: string;
   include: string[];
   exclude: string[];
   func: string;

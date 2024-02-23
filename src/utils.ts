@@ -18,6 +18,13 @@ export function getConfiguration<T extends keyof Config>(key: T): any {
 }
 
 /**
+ * 删除前后引号
+ */
+export function removeQuotationMarks(str: string) {
+  return str.replace(/^['"]|['"]$/g, "");
+}
+
+/**
  * 翻译JSON文件
  * 可以用来追踪当前替换的key对应的中文（比如：自己忘记当前的key的中文，或者看别人修改的key）
  */
