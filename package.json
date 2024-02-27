@@ -108,16 +108,6 @@
       "editor/context": [
         {
           "when": "editorHasSelection && resourceFilename =~ /.ts|.js|.html|.vue/",
-          "command": "lit-i18n-tool.replaceSingle",
-          "group": "1_i18n"
-        },
-        {
-          "when": "editorHasSelection && resourceFilename =~ /.ts|.js|.html|.vue/",
-          "command": "lit-i18n-tool.updateKey",
-          "group": "1_i18n"
-        },
-        {
-          "when": "editorHasSelection && resourceFilename =~ /.ts|.js|.html|.vue/",
           "submenu": "lit-i18n-tool.wrappdKey/content",
           "group": "1_i18n"
         }
